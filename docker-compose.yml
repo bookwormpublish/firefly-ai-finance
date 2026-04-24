@@ -1,0 +1,115 @@
+services:
+  # ─── Firefly III Core ───────────────────────────────────────────────────────
+  app:
+    image: fireflyiii/core:latest
+    hostname: app
+    container_name: firefly_iii_core
+    restart: always
+    volumes:
+      - firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env
+    networks:
+      - firefly_iii
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ─── PostgreSQL Database ─────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    hostname: db
+    container_name: firefly_iii_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - firefly_iii_db:/var/lib/postgresql/data
+    networks:
+      - firefly_iii
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ─── Firefly Data Importer ───────────────────────────────────────────────────
+  importer:
+    image: fireflyiii/data-importer:latest
+    container_name: firefly_iii_importer
+    restart: always
+    env_file: .env
+    ports:
+      - "8081:8080"
+    networks:
+      - firefly_iii
+    depends_on:
+      - app
+    environment:
+      FIREFLY_III_URL: http://app:8080
+      VANITY_URL: http://localhost:8080
+      FIREFLY_III_ACCESS_TOKEN: ${FIREFLY_III_ACCESS_TOKEN}
+
+  # ─── Cron (scheduled jobs inside Firefly) ───────────────────────────────────
+  cron:
+    image: alpine
+    restart: always
+    container_name: firefly_iii_cron
+    env_file: .env
+    command: >
+      sh -c "apk add --no-cache tzdata &&
+             ln -sf /usr/share/zoneinfo/$$TZ /etc/localtime &&
+             echo '0 3 * * * wget -qO- http://app:8080/api/v1/cron/$$STATIC_CRON_TOKEN' | crontab - &&
+             crond -f -L /dev/stdout"
+    networks:
+      - firefly_iii
+    depends_on:
+      - app
+
+  # ─── AI Categorization Service (FastAPI) ────────────────────────────────────
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: firefly_ai_service
+    restart: always
+    env_file: .env
+    ports:
+      - "8000:8000"
+    networks:
+      - firefly_iii
+    depends_on:
+      - app
+    environment:
+      FIREFLY_URL: http://app:8080
+      FIREFLY_TOKEN: ${FIREFLY_III_ACCESS_TOKEN}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+
+  # ─── React Dashboard ─────────────────────────────────────────────────────────
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: firefly_dashboard
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - firefly_iii
+    depends_on:
+      - ai-service
+    environment:
+      VITE_API_URL: http://localhost:8000
+      VITE_FIREFLY_URL: http://localhost:8080
+
+volumes:
+  firefly_iii_upload:
+  firefly_iii_db:
+
+networks:
+  firefly_iii:
+    driver: bridge
