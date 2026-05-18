@@ -1,0 +1,75 @@
+{
+  "rules": {
+    "sentence_length": {
+      "rule": "Max 12 words per sentence",
+      "why": "Matches read-aloud breath and 3-6 year attention span",
+      "example_good": "She pulled her yellow coat tight and took one step.",
+      "example_bad": "She grabbed her yellow raincoat and pulled it tight around her shoulders before taking the first big step through the door."
+    },
+    "vocabulary": {
+      "rule": "Substitute any word a 4-year-old would not know",
+      "test": "If you wouldn't hear it on a playground, cut it",
+      "allowed_exceptions": "One new word per book maximum — define it through context, not explanation",
+      "example_good": "Her heart went fast. Very, very fast.",
+      "example_bad": "Her pulse accelerated with anticipatory anxiety."
+    },
+    "rhythm": {
+      "rule": "Read every 3 sentences aloud. Does it breathe?",
+      "target_pace": "Full picture book: 3–5 minutes at a natural parent bedtime pace",
+      "cadence": "Vary sentence length. Short. Then medium length. Then short again.",
+      "read_aloud_test": "If you stumble while reading, rewrite that sentence — stumbling means the rhythm is broken"
+    },
+    "emotion_naming": {
+      "rule": "Name the feeling explicitly at least once per book",
+      "why": "Emotional vocabulary is the #1 developmental goal — parents buy this book for this reason",
+      "example_good": "That feeling in her tummy? That was worry. And worry was okay.",
+      "note": "Name it plainly. Do not euphemize or over-poeticize the core emotion."
+    },
+    "repetition_device": {
+      "rule": "Use a refrain — a phrase that repeats 2–4 times through the book",
+      "why": "Children expect and love repetition. It creates rhythm and memorability. Parents remember it too.",
+      "examples": [
+        "And that was okay.",
+        "One more brave step.",
+        "She was still Mia.",
+        "But Sam was there."
+      ],
+      "placement": "Introduce refrain on spread 2–3. Repeat at the low point. Deliver it with new meaning on the final spread."
+    },
+    "ending_tone": {
+      "rule": "Final spread must be: warm + concrete + hopeful",
+      "warm": "The child feels seen, not lectured",
+      "concrete": "A specific action or image — not abstract reassurance",
+      "hopeful": "The world is good. The child has what they need.",
+      "example_good": "She still felt the butterflies. But now she knew — butterflies meant something exciting was starting.",
+      "example_bad": "And she learned that it was good to be brave and share her feelings with others."
+    },
+    "parent_layer": {
+      "rule": "There must be a second meaning that makes a parent catch their breath",
+      "why": "Parents are reading this too. Give them something. This is what makes a book go viral.",
+      "test": "Read the last spread. Does it hit differently for a grown-up?",
+      "example": "A book about leaving home for school is also about every parent's fear of letting go"
+    }
+  },
+  "voice_checklist": [
+    "[ ] No sentence exceeds 12 words",
+    "[ ] Zero words a 4-year-old wouldn't know (or 1 new word taught through context)",
+    "[ ] Read aloud — no stumbles",
+    "[ ] Timed read: 3–5 minutes (picture book) / under 1 minute (board book)",
+    "[ ] Feeling named explicitly at least once",
+    "[ ] Refrain appears 2–4 times and lands differently on final use",
+    "[ ] Final spread is warm + concrete + hopeful",
+    "[ ] Parent layer present — at least one line that hits an adult differently"
+  ],
+  "pillar_voice_notes": {
+    "P1_emotional_intelligence": "Name the feeling early. Don't resolve it too fast — let the child sit in it for 2–3 spreads. The resolution comes from within the character, not from an adult fixing it.",
+    "P2_life_skills": "Make the task feel like an adventure, not a chore. The child protagonist should want to do the thing by the end — not just comply.",
+    "P3_wonder_stem": "Lead with the question, not the answer. Let the wonder breathe for 2 spreads before the explanation. End with a new question — curiosity compounds.",
+    "P4_belonging": "Validate the hard feeling first. Do NOT rush to reassurance. The belonging must be earned through the story, not stated by an adult character."
+  },
+  "age_band_voice_notes": {
+    "board_book": "One noun or one emotion per page. No sentences — labels only, or 3-word max phrases. Every page is a standalone unit.",
+    "picture_book": "Full arc in 12–16 spreads. One sentence per page, two max. The illustrations carry 70% of the story — write for what you see, not what you explain.",
+    "early_reader": "Short chapters of 2–4 pages each. First-person or close third. Internal thoughts visible. Dialogue drives pace. End each chapter with a micro-cliffhanger or question."
+  }
+}

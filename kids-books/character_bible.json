@@ -1,0 +1,60 @@
+{
+  "series": {
+    "Mia": {
+      "name": "Mia",
+      "age_visual": "appears ~4 years old",
+      "description": "A curious, warm-hearted girl who feels everything deeply and figures it out one spread at a time",
+      "art_style": "watercolor — soft edges, warm palette, loose brushwork",
+      "base_prompt": "A 4-year-old girl with curly dark hair in two puffs, warm brown skin, big curious dark eyes, round chubby cheeks, wearing a yellow raincoat. Watercolor illustration style, soft edges, warm palette, children's picture book art. Expressive face, full body visible.",
+      "seed_notes": "Lock seed per illustration run. Note seed in each book's spread log for series consistency.",
+      "colors": {
+        "hair": "#2C1810",
+        "skin": "#C68642",
+        "signature_item_color": "#F4C430",
+        "palette_warm": ["#F4C430", "#E8956D", "#7EC8A4"],
+        "palette_cool": ["#6BA8D9", "#9B8EC4", "#F4C430"]
+      },
+      "signature_item": "Yellow raincoat (present in all books, even indoor scenes — it's her identity item)",
+      "emotional_range": ["curious", "worried", "brave", "delighted", "frustrated", "proud"],
+      "age_bands": ["board_book", "picture_book"],
+      "books_in_series": []
+    },
+    "Max & Sam": {
+      "name": "Max & Sam",
+      "age_visual": "Max appears ~6 years old; Sam is a medium-sized dog",
+      "description": "Max is a thoughtful, slightly anxious boy who figures things out with his dog Sam. Sam is expressive and often the comic relief.",
+      "art_style": "soft pencil with digital color — slightly more detailed than board book, suits early readers",
+      "base_prompt_max": "A 6-year-old boy with messy red hair, light skin with freckles across his nose, wearing a green striped t-shirt and jeans. Soft pencil line art with digital watercolor fill, children's book style. Expressive, curious expression.",
+      "base_prompt_sam": "A medium-sized beagle mix dog with floppy ears, brown and white patches, a wagging tail, and a bandana around its neck. Soft pencil line art with digital watercolor fill, expressive cartoon dog, very emotive eyes.",
+      "seed_notes": "Generate Max and Sam together in establishing shot first. Lock seed. All subsequent spreads use same seed + same prompt structure.",
+      "colors": {
+        "max_hair": "#C1440E",
+        "max_shirt_signature": "#3A7D44",
+        "sam_primary": "#D4A96A",
+        "sam_secondary": "#FFFFFF",
+        "palette": ["#3A7D44", "#D4A96A", "#4A90D9", "#E8956D"]
+      },
+      "signature_item": "Sam's red bandana (present in every spread)",
+      "emotional_range": ["adventurous", "nervous", "determined", "surprised", "proud", "worried"],
+      "age_bands": ["early_reader"],
+      "books_in_series": []
+    }
+  },
+  "standalone_template": {
+    "_instructions": "For one-off books not in a series, fill this template before generating illustration prompts",
+    "name": "[Character name]",
+    "age_visual": "appears ~[X] years old",
+    "description": "[1 sentence personality description]",
+    "art_style": "[watercolor / flat vector / soft pencil — ONE style for entire book]",
+    "base_prompt": "[Exact prompt string. Include: age visual, physical features, clothing, art style, mood]",
+    "seed_notes": "Generate 3 variants of establishing shot. Pick best. Lock seed for all spreads.",
+    "colors": {
+      "palette": ["#hex1", "#hex2", "#hex3"],
+      "signature_item_color": "#hex"
+    },
+    "signature_item": "[One prop or clothing item present in every spread — anchor for visual consistency]",
+    "emotional_range": ["[emotion1]", "[emotion2]", "[emotion3]"],
+    "age_bands": ["[board_book/picture_book/early_reader]"],
+    "books_in_series": []
+  }
+}
